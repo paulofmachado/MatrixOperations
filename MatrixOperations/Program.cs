@@ -21,22 +21,23 @@ namespace MatrixOperations
             secondMatrix[1, 1] = 4;
 
             //int[,] finalMatrix = Addition(firstMatrix, secondMatrix);
-            int[,] finalMatrix = Calculate(firstMatrix, secondMatrix, MathOperations.addition);
+            var finalMatrix = Calculate(firstMatrix, secondMatrix, "+");
 
             Presentation(finalMatrix);
         }
 
 
-        private static int[,] Calculate(int[,] a, int[,] b, string mathOperation)
+        private static decimal[,] Calculate(int[,] a, int[,] b, string mathOperation)
         {
-            int[,] result = new int[a.Rank, a.Rank];
+            var operation = OperatorFactory.GetFuncByType(mathOperation);
+
+            decimal[,] result = new decimal[a.Rank, a.Rank];
             for (int i = 0; i < a.Rank; i++)
                 for (int j = 0; j < a.Rank; j++)
-                    result[i, j] = a[i, j] / b[i, j];
+                    result[i, j] = operation(a[i, j],b[i, j]);
 
             return result;
         }
-
 
 
 
@@ -50,7 +51,7 @@ namespace MatrixOperations
         //    return result;
         //}
 
-        private static void Presentation(int[,] a)
+        private static void Presentation(decimal[,] a)
         {
             for (int i = 0; i < a.Rank; i++)
             {
@@ -62,28 +63,17 @@ namespace MatrixOperations
 
         }
 
-        public static class MathOperations
-        {
-            public const string addition = "+";
-            public const string subtraction = "-";
-            public const string multiplication = "*";
-            public const string division = "/";
+        //public static class MathOperations
+        //{
+        //    public const string addition = "+";
+        //    public const string subtraction = "-";
+        //    public const string multiplication = "*";
+        //    public const string division = "/";
 
 
-        }
+        //}
 
-        Dictionary<string, string> My_dict2 = new Dictionary<string, string>(){
-                                  {"a.1", "Dog"},
-                                  {"a.2", "Cat"},
-                                {"a.3", "Pig"}
-        };
-
-
-        //Dictionary<string, string> My_dict2 = new Dictionary<string, string>(){
-        //                          {"a.1", "Dog"},
-        //                          {"a.2", "Cat"},
-        //                        {"a.3", "Pig"}
-        //};
+        
 
 
         #region .: Notas :.
