@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace MatrixOperations
 {
@@ -6,23 +7,50 @@ namespace MatrixOperations
     {
         static void Main(string[] args)
         {
-            int[,] firstMatrix = new int[2, 2];
-            int[,] secondMatrix = new int[2, 2];
+            if (InputValidation.EntryParameter(args))
+                return;
 
-            firstMatrix[0, 0] = 1;
-            firstMatrix[0, 1] = 2;
-            firstMatrix[1, 0] = 3;
-            firstMatrix[1, 1] = 4;
+            var array = SplitArray(args);
 
-            secondMatrix[0, 0] = 1;
-            secondMatrix[0, 1] = 2;
-            secondMatrix[1, 0] = 3;
-            secondMatrix[1, 1] = 4;
+            int arrayRowsA = Convert.ToInt32(array[0]);
+            int arrayColumnsA = Convert.ToInt32(array[1]);
+            int arrayRowsB = Convert.ToInt32(array[2]);
+            int arrayColumnsB = Convert.ToInt32(array[3]);
 
-            var finalMatrix = Calculate(firstMatrix, secondMatrix, "addition");
+            int[,] matrixA = new int[arrayRowsA, arrayColumnsA];
+            int[,] matrixB = new int[arrayRowsB, arrayColumnsB];
+
+            var firstMatrix = FillMatrix(matrixA, arrayRowsA, arrayColumnsA);
+            var secondMatrix = FillMatrix(matrixB, arrayRowsB, arrayColumnsB);
+
+            var operatorMath = args[0];
+
+            var finalMatrix = Calculate(firstMatrix, secondMatrix, operatorMath);
             Presentation(finalMatrix);
         }
 
+        private static string[] SplitArray(string[] args)
+        {
+            char[] separator = { '(', ')', ',', '(', ')', ',' };
+            int count = 6;
+
+            return args[1].Split(separator, count, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static int[,] FillMatrix(int[,] matrix, int arrayRows, int arrayColumns)
+        {
+            int count = 1;
+
+            for (int row = 0; row < arrayRows; row++)
+            {
+                for (int column = 0; column < arrayColumns; column++)
+                {
+                    matrix[row, column] = count++;
+                }
+            }
+
+            return matrix;
+        }
 
         private static decimal[,] Calculate(int[,] a, int[,] b, string mathOperation)
         {

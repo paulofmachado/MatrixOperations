@@ -11,13 +11,15 @@ namespace MatrixOperations
             _operations.Add("subtraction", (first, second) => first - second);
             _operations.Add("multiplication", (first, second) => first * second);
             _operations.Add("division", (first, second) => first / second);
-            _operations.Add("-", (first, second) => first - second);
         }
 
         public static Func<int, int, decimal> GetFuncByType(string operationType)
             => _operations.GetValueOrDefault(operationType);
 
         private static Dictionary<string, Func<int, int, decimal>> _operations
+            = new Dictionary<string, Func<int, int, decimal>>();
+
+        private static Dictionary<string, Func<int, int, decimal>> _operations2
             = new Dictionary<string, Func<int, int, decimal>>();
     }
 }
