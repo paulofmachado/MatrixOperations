@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace MatrixOperations
 {
@@ -20,9 +19,7 @@ namespace MatrixOperations
             secondMatrix[1, 0] = 3;
             secondMatrix[1, 1] = 4;
 
-            //int[,] finalMatrix = Addition(firstMatrix, secondMatrix);
-            var finalMatrix = Calculate(firstMatrix, secondMatrix, "+");
-
+            var finalMatrix = Calculate(firstMatrix, secondMatrix, "addition");
             Presentation(finalMatrix);
         }
 
@@ -34,22 +31,10 @@ namespace MatrixOperations
             decimal[,] result = new decimal[a.Rank, a.Rank];
             for (int i = 0; i < a.Rank; i++)
                 for (int j = 0; j < a.Rank; j++)
-                    result[i, j] = operation(a[i, j],b[i, j]);
+                    result[i, j] = operation(a[i, j], b[i, j]);
 
             return result;
         }
-
-
-
-
-        //private static int[,] Addition(int[,] a, int[,] b)
-        //{
-        //    int[,] result = new int[a.Rank, a.Rank];
-        //    for (int i = 0; i < a.Rank; i++)
-        //        for (int j = 0; j < a.Rank; j++)
-        //            result[i, j] = a[i, j] + b[i, j];
-        //    return result;
-        //}
 
         private static void Presentation(decimal[,] a)
         {
@@ -62,19 +47,6 @@ namespace MatrixOperations
             }
 
         }
-
-        //public static class MathOperations
-        //{
-        //    public const string addition = "+";
-        //    public const string subtraction = "-";
-        //    public const string multiplication = "*";
-        //    public const string division = "/";
-
-
-        //}
-
-        
-
 
         #region .: Notas :.
 
