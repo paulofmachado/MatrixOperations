@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MatrixOperations
 {
@@ -32,7 +33,7 @@ namespace MatrixOperations
             for (int i = 0; i < a.Rank; i++)
                 for (int j = 0; j < a.Rank; j++)
                     result[i, j] = a[i, j] / b[i, j];
-            
+
             return result;
         }
 
@@ -40,14 +41,14 @@ namespace MatrixOperations
 
 
 
-        private static int[,] Addition(int[,] a, int[,] b)
-        {
-            int[,] result = new int[a.Rank, a.Rank];
-            for (int i = 0; i < a.Rank; i++)
-                for (int j = 0; j < a.Rank; j++)
-                    result[i, j] = a[i, j] + b[i, j];
-            return result;
-        }
+        //private static int[,] Addition(int[,] a, int[,] b)
+        //{
+        //    int[,] result = new int[a.Rank, a.Rank];
+        //    for (int i = 0; i < a.Rank; i++)
+        //        for (int j = 0; j < a.Rank; j++)
+        //            result[i, j] = a[i, j] + b[i, j];
+        //    return result;
+        //}
 
         private static void Presentation(int[,] a)
         {
@@ -71,6 +72,21 @@ namespace MatrixOperations
 
         }
 
+        Dictionary<string, string> My_dict2 = new Dictionary<string, string>(){
+                                  {"a.1", "Dog"},
+                                  {"a.2", "Cat"},
+                                {"a.3", "Pig"}
+        };
+
+
+        //Dictionary<string, string> My_dict2 = new Dictionary<string, string>(){
+        //                          {"a.1", "Dog"},
+        //                          {"a.2", "Cat"},
+        //                        {"a.3", "Pig"}
+        //};
+
+
+        #region .: Notas :.
 
         //Criar um programa que receba um valor base e a quatidade de operações da seguinte forma
         //Cacula-Matriz --expressao multiplicacao --primeira((1,2),(2,1)) --segunda((1,2),(2,1))
@@ -86,9 +102,8 @@ namespace MatrixOperations
         //adicao
         //potencializacao
         //raiz
-        //var nome = args[0];
-        //var sobrenome = args[1];
 
+        #endregion
     }
 }
 
